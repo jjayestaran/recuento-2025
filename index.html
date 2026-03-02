@@ -15,8 +15,10 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
         body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .active-link { color: #e30613 !important; border-left: 4px solid #e30613 !important; background-color: #f8fafc; font-weight: 800; }
+        .active-link { color: #db0a5b !important; border-left: 4px solid #db0a5b !important; background-color: #f8fafc; font-weight: 800; }
         .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+        /* Suavizar transiciones */
+        .transition-all { transition: all 0.3s ease; }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -28,7 +30,7 @@
         const LOGO_URL = "https://maestra.cl/wp-content/themes/maestra-2022/img/logo-maestra-main.svg";
         const COLORS = {
             navy: "#003b71",
-            red: "#e30613",
+            red: "#db0a5b", // Nuevo Rojo Maestra Oficial
             green: "#10b981",
         };
 
@@ -44,7 +46,7 @@
         };
 
         const HitoCard = ({ children, title, icon, color = COLORS.navy }) => (
-            <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow mb-4">
+            <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all mb-4">
                 <div className="flex items-start gap-4">
                     <div className="p-2 rounded-lg" style={{ backgroundColor: `${color}10`, color: color }}>
                         <Icon name={icon} size={20} />
@@ -142,7 +144,7 @@
                             <div className="space-y-4">
                                 {sections.map((s) => (
                                     <button key={s.id} onClick={() => scrollTo(s.id)} className="w-full text-left flex items-center gap-4 py-4 border-b border-white/10 text-white">
-                                        <Icon name={s.icon} size={20} className="text-red-500" />
+                                        <Icon name={s.icon} size={20} style={{ color: COLORS.red }} />
                                         <span className="text-lg">{s.label}</span>
                                     </button>
                                 ))}
@@ -155,8 +157,8 @@
                         <section id="inicio" className="min-h-[80vh] flex flex-col justify-start pt-16 md:pt-24 mb-20">
                             <div className="inline-block px-4 py-1 rounded-full text-[10px] font-black tracking-[0.2em] uppercase mb-8 shadow-sm" style={{ backgroundColor: `${COLORS.red}10`, color: COLORS.red }}>Recuento Anual 2025</div>
                             <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8 tracking-tight">
-                                Un año lleno de logros <br />
-                                <span className="italic underline decoration-4 underline-offset-[12px]" style={{ color: COLORS.red, textDecorationColor: COLORS.red }}>de Maestra.</span>
+                                Maestra: <br />
+                                <span className="italic underline decoration-4 underline-offset-[12px]" style={{ color: COLORS.red, textDecorationColor: COLORS.red }}>Un 2025 lleno de logros</span>
                             </h1>
                             <p className="text-lg md:text-xl text-slate-500 max-w-2xl mb-12">Un periodo marcado por la transformación financiera, expansión estratégica y consolidación de nuestra presencia en el mercado nacional e internacional.</p>
                             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
@@ -174,7 +176,7 @@
                                 <div className="md:col-span-2 p-10 rounded-3xl text-white flex items-center justify-between overflow-hidden relative shadow-xl" style={{ backgroundColor: COLORS.navy }}>
                                     <div className="relative z-10">
                                         <h3 className="text-3xl font-bold mb-2 tracking-tight">Giro Financiero Histórico</h3>
-                                        <p className="text-slate-300 text-lg">M$ 5.069 de utilidad <span className="text-white font-bold underline decoration-red-500">antes de impuestos</span></p>
+                                        <p className="text-slate-300 text-lg">M$ 5.069 de utilidad <span className="text-white font-bold underline decoration-red-500" style={{ textDecorationColor: COLORS.red }}>antes de impuestos</span></p>
                                         <p className="text-slate-400 text-sm mt-1">Comparado con M$ -8.731 en el ejercicio 2024</p>
                                     </div>
                                     <div className="text-9xl font-black opacity-10 absolute -right-8" style={{ color: COLORS.red }}>2025</div>
@@ -186,7 +188,7 @@
                             <SectionHeading title="Gestión Inmobiliaria" subtitle="Nuevos acuerdos, aportes de terrenos y consolidación de la oferta DS49 y DS19." />
                             <div className="grid md:grid-cols-3 gap-6">
                                 <div className="bg-white p-6 rounded-xl border-l-4 shadow-sm" style={{ borderLeftColor: COLORS.red }}>
-                                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-green-500" size={18} /> Acuerdos de Compra</h4>
+                                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-emerald-500" size={18} /> Acuerdos de Compra</h4>
                                     <ul className="space-y-3 text-sm text-slate-600">
                                         <li className="flex justify-between"><span>Vistamar - Coquimbo</span> <span className="font-bold text-slate-900">(Rendic)</span></li>
                                         <li className="flex justify-between"><span>Distrito Centro - Chillán</span> <span className="font-bold text-slate-900">(Basagoitia)</span></li>
@@ -194,8 +196,8 @@
                                         <li className="flex justify-between"><span>Serrano - Pto. Montt</span> <span className="font-bold text-slate-900">(M. Vargas)</span></li>
                                     </ul>
                                 </div>
-                                <div className="bg-white p-6 rounded-xl border-l-4 shadow-sm" style={{ borderLeftColor: COLORS.navy }}>
-                                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-green-500" size={18} /> Proyectos DS49/19</h4>
+                                <div className="bg-white p-6 rounded-xl border-l-4 shadow-sm" style={{ borderLeftColor: COLORS.red }}>
+                                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-emerald-500" size={18} /> Proyectos DS49/19</h4>
                                     <ul className="space-y-3 text-sm text-slate-600">
                                         <li>Implementación EP Épica</li>
                                         <li>Postulación Lira IV (DS19)</li>
@@ -204,7 +206,7 @@
                                     </ul>
                                 </div>
                                 <div className="bg-white p-6 rounded-xl border-l-4 shadow-sm" style={{ borderLeftColor: COLORS.red }}>
-                                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-green-500" size={18} /> Hitos de Venta</h4>
+                                    <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-emerald-500" size={18} /> Hitos de Venta</h4>
                                     <ul className="space-y-3 text-sm text-slate-600">
                                         <li className="flex justify-between"><span>Padre Hurtado</span> <span className="font-bold text-slate-900">540 mUF</span></li>
                                         <li>Stock Arriendo Justo</li>
@@ -238,7 +240,7 @@
                         <section id="finanzas" className="py-24 border-t border-slate-200">
                             <SectionHeading title="Consolidación de nueva estructura de Capital" subtitle="Gestión estratégica de financiamiento y solidez en el cumplimiento de compromisos." />
                             <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 grid md:grid-cols-2">
-                                <div className="p-10 text-white" style={{ backgroundColor: COLORS.navy }}>
+                                <div className="p-10 text-white bg-slate-800">
                                     <h4 className="text-xl font-bold mb-8 flex items-center gap-2"><Icon name="dollar-sign" /> Líneas de Crédito</h4>
                                     <div className="space-y-4">
                                         {[
@@ -248,29 +250,33 @@
                                             { label: "Línea G. Mackenna (ITAU)", val: 438 },
                                             { label: "Serrano (BCI)", val: 479 }
                                         ].map((item, i) => (
-                                            <div key={i} className="flex justify-between items-center border-b border-white/10 pb-2">
-                                                <span className="text-slate-300 text-xs">{item.label}</span>
+                                            <div key={i} className="flex justify-between items-center border-b border-white/5 pb-2">
+                                                <span className="text-slate-400 text-xs font-medium">{item.label}</span>
                                                 <span className="font-mono font-bold" style={{ color: COLORS.red }}>{item.val} mUF</span>
                                             </div>
                                         ))}
-                                        <div className="flex justify-between items-center pt-4 mt-4 border-t-2 border-red-500/30">
+                                        <div className="flex justify-between items-center pt-4 mt-4 border-t-2" style={{ borderColor: `${COLORS.red}30` }}>
                                             <span className="text-white font-bold text-sm uppercase">Total Financiamientos</span>
                                             <span className="font-mono text-2xl font-black" style={{ color: COLORS.red }}>2.944 mUF</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-10 space-y-8 flex flex-col justify-center bg-slate-50/50">
-                                    <div className="flex items-start gap-4">
+                                <div className="p-10 space-y-6 flex flex-col justify-center bg-white">
+                                    <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
                                         <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>1</div>
                                         <div><p className="font-bold text-slate-900 italic">Pago KP por 451,9 mUF</p><p className="text-xs text-slate-500">Compromiso cumplido íntegramente.</p></div>
                                     </div>
-                                    <div className="flex items-start gap-4">
+                                    <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
                                         <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>2</div>
-                                        <div><p className="font-bold text-slate-900 italic">Líneas de Garantía SERVIU</p><p className="text-xs text-slate-500">Aseguradas por 220 mUF para respaldo.</p></div>
+                                        <div><p className="font-bold text-slate-900 italic">Mezzanine P.Cicarelli I</p><p className="text-xs text-slate-500">Implementación por UF 150 mil.</p></div>
                                     </div>
-                                    <div className="flex items-start gap-4">
+                                    <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
                                         <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>3</div>
-                                        <div><p className="font-bold text-slate-900 italic text-sm">Compra Leasing Oficinas</p><p className="text-xs text-slate-600">Financiamiento por un activo estratégico que entrega valor para todos nosotros.</p></div>
+                                        <div><p className="font-bold text-slate-900 italic text-sm">Devolución de Capital MDI Dos</p><p className="text-xs text-slate-600">Retorno del 50% a inversionistas del fondo.</p></div>
+                                    </div>
+                                    <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                        <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>4</div>
+                                        <div><p className="font-bold text-slate-900 italic text-sm">Líneas SERVIU y Leasing Oficinas</p><p className="text-xs text-slate-600">Garantías por 220 mUF y activo estratégico.</p></div>
                                     </div>
                                 </div>
                             </div>
@@ -301,8 +307,8 @@
                                     <p className="font-bold text-lg mb-4">Clima Laboral</p>
                                     <p className="text-xs text-green-50">Resultado sobresaliente sobre el mercado Maestra.</p>
                                 </div>
-                                <div className="bg-white p-8 rounded-3xl border border-slate-100 md:col-span-2">
-                                    <h4 className="font-bold text-xl mb-8 flex items-center gap-3 text-slate-800"><Icon name="users" className="text-red-500" /> Cultura Maestra</h4>
+                                <div className="bg-white p-8 rounded-3xl border border-slate-100 md:col-span-2 shadow-sm">
+                                    <h4 className="font-bold text-xl mb-8 flex items-center gap-3 text-slate-800"><Icon name="users" style={{ color: COLORS.red }} /> Cultura Maestra</h4>
                                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-xs">
                                         <div className="space-y-4">
                                             <p><span className="font-bold block text-slate-900">Coaching Ejecutivo:</span> Nota 4.32 / 5.0 - Programa completado exitosamente.</p>
