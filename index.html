@@ -139,7 +139,7 @@
                         </div>
                     </nav>
 
-                    {/* Menú Móvil Overlay - FIXED BACKGROUND TO SOLID DARK NAVY */}
+                    {/* Menú Móvil Overlay */}
                     {isMobileMenuOpen && (
                         <div className="fixed inset-0 bg-[#001a33] z-[100] md:hidden flex flex-col p-8 overflow-y-auto">
                             <div className="flex justify-between items-center mb-12">
@@ -163,8 +163,8 @@
                     {/* Contenido Principal */}
                     <main className="flex-1 md:ml-64 p-6 md:px-12 md:pb-24 max-w-6xl mx-auto w-full overflow-x-hidden">
                         
-                        {/* HERO SECTION - Reduced bottom margin for desktop */}
-                        <section id="inicio" className="min-h-[80vh] flex flex-col justify-start pt-8 md:pt-24 mb-12 md:mb-16">
+                        {/* HERO SECTION */}
+                        <section id="inicio" className="flex flex-col justify-start pt-8 md:pt-16 pb-12 md:pb-16">
                             {/* Logo visible solo en móvil */}
                             <div className="md:hidden flex justify-start mb-10">
                                 <img src={LOGO_URL} alt="Logo Maestra" className="h-10 w-auto object-contain" />
@@ -179,7 +179,7 @@
                             </h1>
                             
                             <p className="text-lg md:text-xl text-slate-500 max-w-2xl mb-12 leading-relaxed">
-                                Un año definido por la transformación financiera estratégica y la consolidación definitiva de nuestra presencia nacional e internacional.
+                                Después de un 2023-2024 extraordinariamente complejo, las cosas comienzan a verse con optimismo
                             </p>
                             
                             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -189,9 +189,12 @@
                             </div>
                         </section>
 
-                        {/* CORPORATIVO - Reduced padding-y */}
+                        {/* CORPORATIVO */}
                         <section id="corporativo" className="py-12 md:py-16 border-t border-slate-200">
-                            <SectionHeading title="Visión Corporativa" subtitle="Estructura organizacional y relaciones estratégicas." />
+                            <SectionHeading 
+                                title="Visión Corporativa" 
+                                subtitle="Socios comprometidos y relaciones estratégicas de largo plazo" 
+                            />
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <HitoCard title="Consolidación de los controladores" icon="arrow-up-right">
                                     Consolidación de la estructura societaria con la compra de participación a JAM y PS.
@@ -207,14 +210,17 @@
                                         </p>
                                         <p className="text-slate-400 text-xs mt-2 uppercase tracking-widest">vs M$ -8.731 en el ejercicio 2024</p>
                                     </div>
-                                    <div className="text-9xl font-black opacity-10 absolute -right-8 pointer-events-none" style={{ color: COLORS.red }}>2025</div>
+                                    <div className="text-[10rem] font-black opacity-10 absolute -right-8 pointer-events-none" style={{ color: COLORS.red }}>2025</div>
                                 </div>
                             </div>
                         </section>
 
-                        {/* INMOBILIARIO - Reduced padding-y */}
+                        {/* INMOBILIARIO */}
                         <section id="inmobiliario" className="py-12 md:py-16 border-t border-slate-200">
-                            <SectionHeading title="Gestión Inmobiliaria" subtitle="Crecimiento territorial y adjudicaciones." />
+                            <SectionHeading 
+                                title="Gestión Inmobiliaria" 
+                                subtitle="Acuerdos comerciales, nuevos proyectos y adjudicaciones" 
+                            />
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <div className="bg-white p-6 rounded-xl border-l-4 shadow-sm" style={{ borderLeftColor: COLORS.red }}>
                                     <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-emerald-500" size={18} /> Acuerdos de Compra</h4>
@@ -245,7 +251,7 @@
                             </div>
                         </section>
 
-                        {/* CONSTRUCCION & RENTAS - Reduced padding-y */}
+                        {/* CONSTRUCCION & RENTAS */}
                         <section id="construccion" className="py-12 md:py-16 border-t border-slate-200">
                             <SectionHeading title="Construcción y Rentas" subtitle="Crecimiento en edificación y diversificación de ingresos." />
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
@@ -280,7 +286,7 @@
                             </div>
                         </section>
 
-                        {/* FINANZAS - Reduced padding-y */}
+                        {/* FINANZAS */}
                         <section id="finanzas" className="py-12 md:py-16 border-t border-slate-200">
                             <SectionHeading title="Consolidación de nueva estructura de Capital" subtitle="Gestión estratégica y cumplimiento de compromisos financieros." />
                             <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 grid grid-cols-1 lg:grid-cols-2">
@@ -329,7 +335,7 @@
                             </div>
                         </section>
 
-                        {/* INTERNACIONAL & COMERCIAL - Reduced padding-y */}
+                        {/* INTERNACIONAL & COMERCIAL */}
                         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 border-t border-slate-200 py-12 md:py-16">
                             <section id="internacional">
                                 <SectionHeading title="Comenzamos proyectos en Miami" subtitle="Vientos dejan de soplar en contra." />
@@ -355,7 +361,7 @@
                             </section>
                         </div>
 
-                        {/* PERSONAS - Reduced padding-y */}
+                        {/* PERSONAS */}
                         <section id="personas" className="py-12 md:py-16 border-t border-slate-200">
                             <SectionHeading title="Capital Humano y Cultura" subtitle="Bienestar y compromiso de nuestro activo más valioso." />
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -383,7 +389,7 @@
                             </div>
                         </section>
 
-                        {/* FOOTER - Slightly reduced top padding */}
+                        {/* FOOTER */}
                         <footer className="py-16 md:py-24 text-center border-t border-slate-200">
                             <img src={LOGO_URL} alt="Logo Maestra" className="h-16 mx-auto mb-10 object-contain" />
                             <h2 className="text-2xl md:text-3xl font-light text-slate-600 italic">"Creamos espacios para que vivas mejor"</h2>
