@@ -64,7 +64,7 @@
         );
 
         const SectionHeading = ({ title, subtitle }) => (
-            <div className="mb-10">
+            <div className="mb-8 md:mb-10">
                 <h2 className="text-3xl font-extrabold mb-3 tracking-tight" style={{ color: COLORS.navy }}>{title}</h2>
                 <div className="w-16 h-1.5 rounded-full mb-4" style={{ backgroundColor: COLORS.red }}></div>
                 <p className="text-slate-500 max-w-2xl italic text-sm leading-relaxed">{subtitle}</p>
@@ -139,9 +139,9 @@
                         </div>
                     </nav>
 
-                    {/* Menú Móvil Overlay */}
+                    {/* Menú Móvil Overlay - FIXED BACKGROUND TO SOLID DARK NAVY */}
                     {isMobileMenuOpen && (
-                        <div className="fixed inset-0 bg-slate-900/98 z-[100] md:hidden flex flex-col p-8 overflow-y-auto">
+                        <div className="fixed inset-0 bg-[#001a33] z-[100] md:hidden flex flex-col p-8 overflow-y-auto">
                             <div className="flex justify-between items-center mb-12">
                                 <img src={LOGO_URL} alt="Logo Maestra" className="h-8 brightness-0 invert" />
                                 <button onClick={() => setIsMobileMenuOpen(false)} className="text-white p-2 border border-white/20 rounded-full">
@@ -163,8 +163,8 @@
                     {/* Contenido Principal */}
                     <main className="flex-1 md:ml-64 p-6 md:px-12 md:pb-24 max-w-6xl mx-auto w-full overflow-x-hidden">
                         
-                        {/* HERO SECTION */}
-                        <section id="inicio" className="min-h-[80vh] flex flex-col justify-start pt-8 md:pt-24 mb-20">
+                        {/* HERO SECTION - Reduced bottom margin for desktop */}
+                        <section id="inicio" className="min-h-[80vh] flex flex-col justify-start pt-8 md:pt-24 mb-12 md:mb-16">
                             {/* Logo visible solo en móvil */}
                             <div className="md:hidden flex justify-start mb-10">
                                 <img src={LOGO_URL} alt="Logo Maestra" className="h-10 w-auto object-contain" />
@@ -189,8 +189,8 @@
                             </div>
                         </section>
 
-                        {/* CORPORATIVO */}
-                        <section id="corporativo" className="py-24 border-t border-slate-200">
+                        {/* CORPORATIVO - Reduced padding-y */}
+                        <section id="corporativo" className="py-12 md:py-16 border-t border-slate-200">
                             <SectionHeading title="Visión Corporativa" subtitle="Estructura organizacional y relaciones estratégicas." />
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <HitoCard title="Consolidación de los controladores" icon="arrow-up-right">
@@ -212,8 +212,8 @@
                             </div>
                         </section>
 
-                        {/* INMOBILIARIO */}
-                        <section id="inmobiliario" className="py-24 border-t border-slate-200">
+                        {/* INMOBILIARIO - Reduced padding-y */}
+                        <section id="inmobiliario" className="py-12 md:py-16 border-t border-slate-200">
                             <SectionHeading title="Gestión Inmobiliaria" subtitle="Crecimiento territorial y adjudicaciones." />
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <div className="bg-white p-6 rounded-xl border-l-4 shadow-sm" style={{ borderLeftColor: COLORS.red }}>
@@ -245,8 +245,8 @@
                             </div>
                         </section>
 
-                        {/* CONSTRUCCION & RENTAS */}
-                        <section id="construccion" className="py-24 border-t border-slate-200">
+                        {/* CONSTRUCCION & RENTAS - Reduced padding-y */}
+                        <section id="construccion" className="py-12 md:py-16 border-t border-slate-200">
                             <SectionHeading title="Construcción y Rentas" subtitle="Crecimiento en edificación y diversificación de ingresos." />
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                                 <div className="space-y-4">
@@ -280,8 +280,8 @@
                             </div>
                         </section>
 
-                        {/* FINANZAS */}
-                        <section id="finanzas" className="py-24 border-t border-slate-200">
+                        {/* FINANZAS - Reduced padding-y */}
+                        <section id="finanzas" className="py-12 md:py-16 border-t border-slate-200">
                             <SectionHeading title="Consolidación de nueva estructura de Capital" subtitle="Gestión estratégica y cumplimiento de compromisos financieros." />
                             <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 grid grid-cols-1 lg:grid-cols-2">
                                 <div className="p-10 text-white bg-slate-800">
@@ -329,7 +329,8 @@
                             </div>
                         </section>
 
-                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 border-t border-slate-200 py-24">
+                        {/* INTERNACIONAL & COMERCIAL - Reduced padding-y */}
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 border-t border-slate-200 py-12 md:py-16">
                             <section id="internacional">
                                 <SectionHeading title="Comenzamos proyectos en Miami" subtitle="Vientos dejan de soplar en contra." />
                                 <div className="relative h-72 rounded-2xl overflow-hidden flex items-center justify-center shadow-xl border border-slate-100 group">
@@ -354,8 +355,8 @@
                             </section>
                         </div>
 
-                        {/* PERSONAS */}
-                        <section id="personas" className="py-24 border-t border-slate-200">
+                        {/* PERSONAS - Reduced padding-y */}
+                        <section id="personas" className="py-12 md:py-16 border-t border-slate-200">
                             <SectionHeading title="Capital Humano y Cultura" subtitle="Bienestar y compromiso de nuestro activo más valioso." />
                             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
                                 <div className="p-8 rounded-3xl text-white shadow-lg flex flex-col justify-center items-center text-center transition-transform hover:scale-[1.02]" style={{ backgroundColor: COLORS.green }}>
@@ -382,8 +383,8 @@
                             </div>
                         </section>
 
-                        {/* FOOTER */}
-                        <footer className="py-24 text-center border-t border-slate-200">
+                        {/* FOOTER - Slightly reduced top padding */}
+                        <footer className="py-16 md:py-24 text-center border-t border-slate-200">
                             <img src={LOGO_URL} alt="Logo Maestra" className="h-16 mx-auto mb-10 object-contain" />
                             <h2 className="text-2xl md:text-3xl font-light text-slate-600 italic">"Creamos espacios para que vivas mejor"</h2>
                             <div className="mt-12 text-slate-300 text-[10px] uppercase tracking-[0.4em] font-bold">&copy; 2025 Grupo Maestra</div>
