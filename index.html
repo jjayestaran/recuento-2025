@@ -4,21 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuento 2025 - Grupo Maestra</title>
-    <!-- Tailwind CSS para el diseño -->
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- React y Babel para ejecutar el código en el navegador sin compilación previa -->
+    <!-- React y Babel -->
     <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap');
-        body { font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-        .active-link { color: #db0a5b !important; border-left: 4px solid #db0a5b !important; background-color: #f8fafc; font-weight: 800; }
-        .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
-        /* Suavizar transiciones */
-        .transition-all { transition: all 0.3s ease; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        body { 
+            font-family: 'Inter', sans-serif; 
+            scroll-behavior: smooth; 
+            -webkit-font-smoothing: antialiased;
+        }
+        .active-link { 
+            color: #db0a5b !important; 
+            border-left: 4px solid #db0a5b !important; 
+            background-color: #f8fafc; 
+            font-weight: 700; 
+        }
     </style>
 </head>
 <body class="bg-slate-50 text-slate-900">
@@ -30,13 +36,11 @@
         const LOGO_URL = "https://maestra.cl/wp-content/themes/maestra-2022/img/logo-maestra-main.svg";
         const COLORS = {
             navy: "#003b71",
-            red: "#db0a5b", // Nuevo Rojo Maestra Oficial
+            red: "#db0a5b", 
             green: "#10b981",
         };
 
-        // Icon component wrapper for Lucide
         const Icon = ({ name, size = 20, className = "" }) => {
-            const iconRef = useRef(null);
             useEffect(() => {
                 if (window.lucide) {
                     window.lucide.createIcons();
@@ -45,34 +49,34 @@
             return <i data-lucide={name} className={className} style={{ width: size, height: size }}></i>;
         };
 
-        const HitoCard = ({ children, title, icon, color = COLORS.navy }) => (
-            <div className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-all mb-4">
+        const HitoCard = ({ children, title, icon, color = COLORS.navy, fullHeight = false }) => (
+            <div className={`bg-white p-6 rounded-xl border border-slate-100 shadow-sm hover:shadow-md transition-all flex flex-col ${fullHeight ? 'h-full' : ''}`}>
                 <div className="flex items-start gap-4">
-                    <div className="p-2 rounded-lg" style={{ backgroundColor: `${color}10`, color: color }}>
+                    <div className="p-2 rounded-lg shrink-0" style={{ backgroundColor: `${color}10`, color: color }}>
                         <Icon name={icon} size={20} />
                     </div>
                     <div className="flex-1">
-                        <h4 className="font-bold text-gray-800 mb-1">{title}</h4>
-                        <div className="text-gray-600 text-sm leading-relaxed">{children}</div>
+                        <h4 className="font-bold text-slate-800 mb-1 leading-tight">{title}</h4>
+                        <div className="text-slate-500 text-sm leading-relaxed">{children}</div>
                     </div>
                 </div>
             </div>
         );
 
         const SectionHeading = ({ title, subtitle }) => (
-            <div className="mb-8">
-                <h2 className="text-3xl font-bold text-slate-900 mb-2">{title}</h2>
-                <div className="w-20 h-1.5 rounded-full mb-4" style={{ backgroundColor: COLORS.red }}></div>
-                <p className="text-slate-500 max-w-2xl italic text-sm">{subtitle}</p>
+            <div className="mb-10">
+                <h2 className="text-3xl font-extrabold mb-3 tracking-tight" style={{ color: COLORS.navy }}>{title}</h2>
+                <div className="w-16 h-1.5 rounded-full mb-4" style={{ backgroundColor: COLORS.red }}></div>
+                <p className="text-slate-500 max-w-2xl italic text-sm leading-relaxed">{subtitle}</p>
             </div>
         );
 
         const MetricCard = ({ value, label, sublabel }) => (
             <div className="text-white p-6 rounded-2xl flex flex-col justify-center border-b-4 shadow-lg transition-transform hover:scale-[1.02]" 
                  style={{ backgroundColor: COLORS.navy, borderBottomColor: COLORS.red }}>
-                <span className="text-xs uppercase tracking-widest text-slate-300 mb-1">{label}</span>
-                <span className="text-3xl font-bold mb-1">{value}</span>
-                <span className="text-xs text-slate-400 leading-tight">{sublabel}</span>
+                <span className="text-[10px] uppercase font-bold tracking-[0.2em] text-slate-300 mb-2">{label}</span>
+                <span className="text-3xl font-extrabold mb-1 tracking-tight">{value}</span>
+                <span className="text-xs text-slate-400 font-medium leading-tight">{sublabel}</span>
             </div>
         );
 
@@ -81,9 +85,9 @@
             const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
             const sections = [
-                { id: 'inicio', label: 'Un año de logros', icon: 'trending-up' },
+                { id: 'inicio', label: 'Inicio', icon: 'trending-up' },
                 { id: 'corporativo', label: 'Estrategia Corporativa', icon: 'landmark' },
-                { id: 'inmobiliario', label: 'Desarrollo Inmobiliario', icon: 'building-2' },
+                { id: 'inmobiliario', label: 'Gestión Inmobiliaria', icon: 'building-2' },
                 { id: 'construccion', label: 'Construcción y Rentas', icon: 'hard-hat' },
                 { id: 'finanzas', label: 'Estructura de Capital', icon: 'dollar-sign' },
                 { id: 'internacional', label: 'Proyectos en Miami', icon: 'globe' },
@@ -114,12 +118,13 @@
             };
 
             return (
-                <div className="min-h-screen">
+                <div className="min-h-screen flex flex-col md:flex-row">
+                    
                     {/* Sidebar Desktop */}
                     <nav className="fixed left-0 top-0 h-full w-64 bg-white border-r border-slate-200 z-50 hidden md:flex flex-col shadow-sm">
-                        <div className="p-8">
-                            <img src={LOGO_URL} alt="Logo Maestra" className="h-10 w-auto mb-10" />
-                            <div className="space-y-1">
+                        <div className="p-8 flex flex-col h-full">
+                            <img src={LOGO_URL} alt="Logo Maestra" className="h-10 w-auto mb-10 object-contain self-start" />
+                            <div className="space-y-1 overflow-y-auto pr-2">
                                 {sections.map((s) => (
                                     <button key={s.id} onClick={() => scrollTo(s.id)}
                                         className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all text-sm text-left ${activeSection === s.id ? 'active-link' : 'text-slate-500 hover:bg-slate-50'}`}>
@@ -128,23 +133,26 @@
                                     </button>
                                 ))}
                             </div>
-                        </div>
-                        <div className="mt-auto p-8 border-t border-slate-100">
-                            <p className="text-[10px] text-slate-400 font-bold uppercase tracking-widest">RECUENTO 2025</p>
+                            <div className="mt-auto pt-8 border-t border-slate-100">
+                                <p className="text-[10px] text-slate-400 font-extrabold uppercase tracking-widest">RECUENTO 2025</p>
+                            </div>
                         </div>
                     </nav>
 
-                    {/* Mobile Menu Overlay */}
+                    {/* Menú Móvil Overlay */}
                     {isMobileMenuOpen && (
-                        <div className="fixed inset-0 bg-slate-900/95 z-[100] md:hidden flex flex-col p-8 overflow-y-auto">
+                        <div className="fixed inset-0 bg-slate-900/98 z-[100] md:hidden flex flex-col p-8 overflow-y-auto">
                             <div className="flex justify-between items-center mb-12">
                                 <img src={LOGO_URL} alt="Logo Maestra" className="h-8 brightness-0 invert" />
-                                <button onClick={() => setIsMobileMenuOpen(false)} className="text-white p-2"><Icon name="x" size={32} /></button>
+                                <button onClick={() => setIsMobileMenuOpen(false)} className="text-white p-2 border border-white/20 rounded-full">
+                                    <Icon name="x" size={24} />
+                                </button>
                             </div>
                             <div className="space-y-4">
                                 {sections.map((s) => (
-                                    <button key={s.id} onClick={() => scrollTo(s.id)} className="w-full text-left flex items-center gap-4 py-4 border-b border-white/10 text-white">
-                                        <Icon name={s.icon} size={20} style={{ color: COLORS.red }} />
+                                    <button key={s.id} onClick={() => scrollTo(s.id)} 
+                                        className={`w-full text-left flex items-center gap-4 py-4 border-b border-white/10 ${activeSection === s.id ? 'text-white font-bold' : 'text-slate-400'}`}>
+                                        <Icon name={s.icon} size={20} style={{ color: activeSection === s.id ? COLORS.red : "inherit" }} />
                                         <span className="text-lg">{s.label}</span>
                                     </button>
                                 ))}
@@ -152,186 +160,238 @@
                         </div>
                     )}
 
-                    {/* Main Content */}
-                    <main className="md:ml-64 p-4 md:px-12 md:pb-12 max-w-6xl mx-auto">
-                        <section id="inicio" className="min-h-[80vh] flex flex-col justify-start pt-16 md:pt-24 mb-20">
-                            <div className="inline-block px-4 py-1 rounded-full text-[10px] font-black tracking-[0.2em] uppercase mb-8 shadow-sm" style={{ backgroundColor: `${COLORS.red}10`, color: COLORS.red }}>Recuento Anual 2025</div>
-                            <h1 className="text-5xl md:text-7xl font-extrabold text-slate-900 leading-[1.1] mb-8 tracking-tight">
-                                Maestra: <br />
-                                <span className="italic underline decoration-4 underline-offset-[12px]" style={{ color: COLORS.red, textDecorationColor: COLORS.red }}>Un 2025 lleno de logros</span>
+                    {/* Contenido Principal */}
+                    <main className="flex-1 md:ml-64 p-6 md:px-12 md:pb-24 max-w-6xl mx-auto w-full overflow-x-hidden">
+                        
+                        {/* HERO SECTION */}
+                        <section id="inicio" className="min-h-[80vh] flex flex-col justify-start pt-8 md:pt-24 mb-20">
+                            {/* Logo visible solo en móvil */}
+                            <div className="md:hidden flex justify-start mb-10">
+                                <img src={LOGO_URL} alt="Logo Maestra" className="h-10 w-auto object-contain" />
+                            </div>
+
+                            <div className="inline-block px-4 py-1.5 rounded-full text-[10px] font-black tracking-[0.2em] uppercase mb-8 shadow-sm self-start" style={{ backgroundColor: `${COLORS.red}10`, color: COLORS.red }}>
+                                RECUENTO ANUAL MAESTRA 2025
+                            </div>
+                            
+                            <h1 className="text-5xl md:text-7xl font-extrabold leading-[1.1] mb-10 tracking-tight" style={{ color: COLORS.navy }}>
+                                Un 2025 <span className="underline decoration-4 underline-offset-[12px]" style={{ textDecorationColor: COLORS.red }}>lleno de logros</span>
                             </h1>
-                            <p className="text-lg md:text-xl text-slate-500 max-w-2xl mb-12">Un periodo marcado por la transformación financiera, expansión estratégica y consolidación de nuestra presencia en el mercado nacional e internacional.</p>
-                            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                            
+                            <p className="text-lg md:text-xl text-slate-500 max-w-2xl mb-12 leading-relaxed">
+                                Un año definido por la transformación financiera estratégica y la consolidación definitiva de nuestra presencia nacional e internacional.
+                            </p>
+                            
+                            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <MetricCard label="Utilidad 2025" value="M$ 5.069" sublabel="Antes de impuestos" />
                                 <MetricCard label="Satisfacción Laboral" value="79%" sublabel="Sobre promedio de mercado" />
                                 <MetricCard label="Productividad" value="Líder CChC" sublabel="En obra Mirador Mapocho" />
                             </div>
                         </section>
 
+                        {/* CORPORATIVO */}
                         <section id="corporativo" className="py-24 border-t border-slate-200">
-                            <SectionHeading title="Visión Corporativa" subtitle="Fortalecimiento de la estructura organizacional y relaciones institucionales clave." />
-                            <div className="grid md:grid-cols-2 gap-6">
-                                <HitoCard title="Consolidación de los controladores" icon="arrow-up-right">Consolidación de la estructura societaria con la compra de participación a JAM y PS.</HitoCard>
-                                <HitoCard title="Relación Institucional" icon="landmark">Vínculo positivo y estratégico con el Ministerio de Vivienda, Serviu y participación activa en la CChC.</HitoCard>
-                                <div className="md:col-span-2 p-10 rounded-3xl text-white flex items-center justify-between overflow-hidden relative shadow-xl" style={{ backgroundColor: COLORS.navy }}>
-                                    <div className="relative z-10">
+                            <SectionHeading title="Visión Corporativa" subtitle="Estructura organizacional y relaciones estratégicas." />
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <HitoCard title="Consolidación de los controladores" icon="arrow-up-right">
+                                    Consolidación de la estructura societaria con la compra de participación a JAM y PS.
+                                </HitoCard>
+                                <HitoCard title="Relación Institucional" icon="landmark">
+                                    Vínculo positivo con el Ministerio de Vivienda, Serviu y participación líder en la CChC.
+                                </HitoCard>
+                                <div className="md:col-span-2 p-10 rounded-3xl text-white flex flex-col md:flex-row items-center justify-between overflow-hidden relative shadow-xl" style={{ backgroundColor: COLORS.navy }}>
+                                    <div className="relative z-10 text-center md:text-left">
                                         <h3 className="text-3xl font-bold mb-2 tracking-tight">Giro Financiero Histórico</h3>
-                                        <p className="text-slate-300 text-lg">M$ 5.069 de utilidad <span className="text-white font-bold underline decoration-red-500" style={{ textDecorationColor: COLORS.red }}>antes de impuestos</span></p>
-                                        <p className="text-slate-400 text-sm mt-1">Comparado con M$ -8.731 en el ejercicio 2024</p>
+                                        <p className="text-slate-300 text-lg">
+                                            <span className="text-white font-bold underline decoration-red-500 decoration-4 underline-offset-4" style={{ textDecorationColor: COLORS.red }}>M$ 5.069</span> de utilidad antes de impuestos
+                                        </p>
+                                        <p className="text-slate-400 text-xs mt-2 uppercase tracking-widest">vs M$ -8.731 en el ejercicio 2024</p>
                                     </div>
-                                    <div className="text-9xl font-black opacity-10 absolute -right-8" style={{ color: COLORS.red }}>2025</div>
+                                    <div className="text-9xl font-black opacity-10 absolute -right-8 pointer-events-none" style={{ color: COLORS.red }}>2025</div>
                                 </div>
                             </div>
                         </section>
 
+                        {/* INMOBILIARIO */}
                         <section id="inmobiliario" className="py-24 border-t border-slate-200">
-                            <SectionHeading title="Gestión Inmobiliaria" subtitle="Nuevos acuerdos, aportes de terrenos y consolidación de la oferta DS49 y DS19." />
-                            <div className="grid md:grid-cols-3 gap-6">
+                            <SectionHeading title="Gestión Inmobiliaria" subtitle="Crecimiento territorial y adjudicaciones." />
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                                 <div className="bg-white p-6 rounded-xl border-l-4 shadow-sm" style={{ borderLeftColor: COLORS.red }}>
                                     <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-emerald-500" size={18} /> Acuerdos de Compra</h4>
-                                    <ul className="space-y-3 text-sm text-slate-600">
-                                        <li className="flex justify-between"><span>Vistamar - Coquimbo</span> <span className="font-bold text-slate-900">(Rendic)</span></li>
-                                        <li className="flex justify-between"><span>Distrito Centro - Chillán</span> <span className="font-bold text-slate-900">(Basagoitia)</span></li>
-                                        <li className="flex justify-between"><span>Alto La Serena</span> <span className="font-bold text-slate-900">(S. Lorca)</span></li>
-                                        <li className="flex justify-between"><span>Serrano - Pto. Montt</span> <span className="font-bold text-slate-900">(M. Vargas)</span></li>
+                                    <ul className="space-y-3 text-sm text-slate-600 font-medium">
+                                        <li className="flex justify-between border-b border-slate-50 pb-1"><span>Vistamar - Coquimbo</span> <span className="font-bold text-slate-900 opacity-60">(Rendic)</span></li>
+                                        <li className="flex justify-between border-b border-slate-50 pb-1"><span>Distrito Centro - Chillán</span> <span className="font-bold text-slate-900 opacity-60">(Basagoitia)</span></li>
+                                        <li className="flex justify-between border-b border-slate-50 pb-1"><span>Alto La Serena</span> <span className="font-bold text-slate-900 opacity-60">(S. Lorca)</span></li>
+                                        <li className="flex justify-between"><span>Serrano - Pto. Montt</span> <span className="font-bold text-slate-900 opacity-60">(M. Vargas)</span></li>
                                     </ul>
                                 </div>
                                 <div className="bg-white p-6 rounded-xl border-l-4 shadow-sm" style={{ borderLeftColor: COLORS.red }}>
                                     <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-emerald-500" size={18} /> Proyectos DS49/19</h4>
-                                    <ul className="space-y-3 text-sm text-slate-600">
-                                        <li>Implementación EP Épica</li>
-                                        <li>Postulación Lira IV (DS19)</li>
-                                        <li>La Compañía, Tocoral y Agua Santa</li>
-                                        <li>Aprobación Llacolén</li>
+                                    <ul className="space-y-3 text-sm text-slate-600 font-medium">
+                                        <li>• Implementación EP Épica</li>
+                                        <li>• Postulación Lira IV (DS19)</li>
+                                        <li>• La Compañía, Tocoral y Agua Santa</li>
+                                        <li>• Aprobación Llacolén</li>
                                     </ul>
                                 </div>
                                 <div className="bg-white p-6 rounded-xl border-l-4 shadow-sm" style={{ borderLeftColor: COLORS.red }}>
                                     <h4 className="font-bold text-lg mb-4 flex items-center gap-2 text-slate-800"><Icon name="check-circle-2" className="text-emerald-500" size={18} /> Hitos de Venta</h4>
-                                    <ul className="space-y-3 text-sm text-slate-600">
-                                        <li className="flex justify-between"><span>Padre Hurtado</span> <span className="font-bold text-slate-900">540 mUF</span></li>
-                                        <li>Stock Arriendo Justo</li>
-                                        <li>Escrituración varios</li>
+                                    <ul className="space-y-3 text-sm text-slate-600 font-medium">
+                                        <li className="flex justify-between border-b border-slate-50 pb-1"><span>Padre Hurtado (Vivecoop)</span> <span className="font-bold text-red-600">540 mUF</span></li>
+                                        <li>• Stock Arriendo Justo</li>
+                                        <li>• Escrituración Proyectos varios</li>
                                     </ul>
                                 </div>
                             </div>
                         </section>
 
+                        {/* CONSTRUCCION & RENTAS */}
                         <section id="construccion" className="py-24 border-t border-slate-200">
-                            <SectionHeading title="Construcción y Rentas" subtitle="Crecimiento en ventas a terceros y diversificación de ingresos." />
-                            <div className="grid md:grid-cols-2 gap-8">
+                            <SectionHeading title="Construcción y Rentas" subtitle="Crecimiento en edificación y diversificación de ingresos." />
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10">
                                 <div className="space-y-4">
                                     <h3 className="font-bold text-xl mb-4 text-slate-700 flex items-center gap-2 uppercase tracking-tighter"><Icon name="hard-hat" /> Edificación</h3>
-                                    <div className="p-4 bg-white rounded-lg border border-slate-100 flex items-center justify-between shadow-sm text-sm"><span>Ventas DS19 (CONAVICOOP)</span><span className="font-bold" style={{ color: COLORS.red }}>967 mUF</span></div>
-                                    <div className="p-4 bg-white rounded-lg border border-slate-100 flex items-center justify-between shadow-sm text-sm"><span>Ventas DS49 (SERVIU)</span><span className="font-bold" style={{ color: COLORS.red }}>876 mUF</span></div>
-                                    <div className="p-4 bg-white rounded-lg border border-slate-100 flex items-center justify-between shadow-sm text-sm"><span>Inicio Llacolén</span><span className="font-bold" style={{ color: COLORS.red }}>651 mUF</span></div>
-                                    <div className="p-4 bg-slate-100 border-2 border-dashed border-slate-200 rounded-lg text-center py-6">
-                                        <p className="text-sm font-bold text-slate-900">Líder en Productividad 2025</p>
-                                        <p className="text-xs text-slate-500">Mención Obra Mirador Mapocho - CChC</p>
+                                    <div className="p-4 bg-white rounded-lg border border-slate-100 flex items-center justify-between shadow-sm">
+                                        <span className="text-sm">Ventas 2 obras DS19 (CONAVICOOP)</span>
+                                        <span className="font-bold" style={{ color: COLORS.red }}>967 mUF</span>
+                                    </div>
+                                    <div className="p-4 bg-white rounded-lg border border-slate-100 flex items-center justify-between shadow-sm">
+                                        <span className="text-sm">Ventas 2 obras DS49 (SERVIU)</span>
+                                        <span className="font-bold" style={{ color: COLORS.red }}>876 mUF</span>
+                                    </div>
+                                    <div className="p-4 bg-white rounded-lg border border-slate-100 flex items-center justify-between shadow-sm">
+                                        <span className="text-sm">Inicio Llacolén – Concepción</span>
+                                        <span className="font-bold" style={{ color: COLORS.red }}>651 mUF</span>
+                                    </div>
+                                    <div className="p-4 bg-slate-100 border-2 border-dashed border-slate-200 rounded-lg text-center mt-4 py-4">
+                                        <p className="text-sm font-bold text-slate-900">Productividad Líder 2025</p>
+                                        <p className="text-xs text-slate-500 italic">Obra Mirador Mapocho - Ranking CChC</p>
                                     </div>
                                 </div>
                                 <div className="space-y-4">
                                     <h3 className="font-bold text-xl mb-4 text-slate-700 flex items-center gap-2 uppercase tracking-tighter"><Icon name="building-2" /> Rentas Inmobiliarias</h3>
-                                    <HitoCard title="Venta RentaDep" icon="arrow-up-right" color={COLORS.red}>Transacción exitosa a AssetPlan por un total de M$ 700.</HitoCard>
-                                    <HitoCard title="Subsidios DS52" icon="check-circle-2" color={COLORS.red}>Implementación exitosa de subsidios de arriendos para portafolio.</HitoCard>
+                                    <HitoCard title="Venta RentaDep" icon="arrow-up-right" color={COLORS.red}>
+                                        Transacción exitosa a AssetPlan por un total de M$ 700.
+                                    </HitoCard>
+                                    <HitoCard title="Subsidios DS52" icon="check-circle-2" color={COLORS.red}>
+                                        Implementación exitosa de subsidios de arriendos para portafolio.
+                                    </HitoCard>
                                 </div>
                             </div>
                         </section>
 
+                        {/* FINANZAS */}
                         <section id="finanzas" className="py-24 border-t border-slate-200">
-                            <SectionHeading title="Consolidación de nueva estructura de Capital" subtitle="Gestión estratégica de financiamiento y solidez en el cumplimiento de compromisos." />
-                            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 grid md:grid-cols-2">
+                            <SectionHeading title="Consolidación de nueva estructura de Capital" subtitle="Gestión estratégica y cumplimiento de compromisos financieros." />
+                            <div className="bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-100 grid grid-cols-1 lg:grid-cols-2">
                                 <div className="p-10 text-white bg-slate-800">
-                                    <h4 className="text-xl font-bold mb-8 flex items-center gap-2"><Icon name="dollar-sign" /> Líneas de Crédito</h4>
+                                    <h4 className="text-xl font-bold mb-8 flex items-center gap-2 uppercase tracking-widest"><Icon name="dollar-sign" /> Líneas de Crédito</h4>
                                     <div className="space-y-4">
                                         {[
                                             { label: "Financiamiento Stock (Moneda/BTG)", val: 935 },
-                                            { label: "Fondo Credicorp (Salida y Pago)", val: 652 },
                                             { label: "Refinanciamiento P. Cicarelli I", val: 440 },
                                             { label: "Línea G. Mackenna (ITAU)", val: 438 },
                                             { label: "Serrano (BCI)", val: 479 }
                                         ].map((item, i) => (
                                             <div key={i} className="flex justify-between items-center border-b border-white/5 pb-2">
-                                                <span className="text-slate-400 text-xs font-medium">{item.label}</span>
-                                                <span className="font-mono font-bold" style={{ color: COLORS.red }}>{item.val} mUF</span>
+                                                <span className="text-slate-400 text-xs flex-1">{item.label}</span>
+                                                <span className="font-mono font-bold text-right min-w-[80px]" style={{ color: COLORS.red }}>{item.val} mUF</span>
                                             </div>
                                         ))}
-                                        <div className="flex justify-between items-center pt-4 mt-4 border-t-2" style={{ borderColor: `${COLORS.red}30` }}>
+                                        <div className="flex justify-between items-center pt-6 mt-4 border-t-2" style={{ borderColor: `${COLORS.red}40` }}>
                                             <span className="text-white font-bold text-sm uppercase">Total Financiamientos</span>
-                                            <span className="font-mono text-2xl font-black" style={{ color: COLORS.red }}>2.944 mUF</span>
+                                            <span className="font-mono text-2xl font-black text-right" style={{ color: COLORS.red }}>2.292 mUF</span>
                                         </div>
                                     </div>
                                 </div>
-                                <div className="p-10 space-y-6 flex flex-col justify-center bg-white">
+                                <div className="p-10 space-y-5 flex flex-col justify-center bg-white">
                                     <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                                        <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>1</div>
-                                        <div><p className="font-bold text-slate-900 italic">Pago KP por 451,9 mUF</p><p className="text-xs text-slate-500">Compromiso cumplido íntegramente.</p></div>
+                                        <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>1</div>
+                                        <div><p className="font-bold text-slate-900 italic text-sm">Fondo Credicorp (salida y pago)</p><p className="text-[11px] text-slate-500">Monto total de UF 652 mil.</p></div>
                                     </div>
                                     <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                                        <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>2</div>
-                                        <div><p className="font-bold text-slate-900 italic">Mezzanine P.Cicarelli I</p><p className="text-xs text-slate-500">Implementación por UF 150 mil.</p></div>
+                                        <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>2</div>
+                                        <div><p className="font-bold text-slate-900 italic text-sm leading-tight mb-1">Devolución MDI Dos</p><p className="text-[11px] text-slate-500">Retorno del 50% a inversionistas del fondo.</p></div>
                                     </div>
                                     <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                                        <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>3</div>
-                                        <div><p className="font-bold text-slate-900 italic text-sm">Devolución de Capital MDI Dos</p><p className="text-xs text-slate-600">Retorno del 50% a inversionistas del fondo.</p></div>
+                                        <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>3</div>
+                                        <div><p className="font-bold text-slate-900 italic text-sm">Pago de KP por UF 451 mil</p><p className="text-[11px] text-slate-500">Cumplido íntegramente según cronograma.</p></div>
                                     </div>
                                     <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
-                                        <div className="w-10 h-10 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>4</div>
-                                        <div><p className="font-bold text-slate-900 italic text-sm">Líneas SERVIU y Leasing Oficinas</p><p className="text-xs text-slate-600">Garantías por 220 mUF y activo estratégico.</p></div>
+                                        <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>4</div>
+                                        <div><p className="font-bold text-slate-900 italic text-sm">Mezzanine P.Cicarelli I</p><p className="text-[11px] text-slate-500">Implementación por UF 150 mil.</p></div>
+                                    </div>
+                                    <div className="flex items-start gap-4 p-4 rounded-xl bg-slate-50 border border-slate-100">
+                                        <div className="w-8 h-8 rounded-full flex items-center justify-center font-bold flex-shrink-0" style={{ backgroundColor: `${COLORS.red}15`, color: COLORS.red }}>5</div>
+                                        <div><p className="font-bold text-slate-900 italic text-sm leading-tight mb-1">Líneas SERVIU y Leasing</p><p className="text-[11px] text-slate-500">Garantías por 220 mUF y activos estratégicos.</p></div>
                                     </div>
                                 </div>
                             </div>
                         </section>
 
-                        <div className="grid md:grid-cols-2 gap-12 border-t border-slate-200 py-24">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 border-t border-slate-200 py-24">
                             <section id="internacional">
                                 <SectionHeading title="Comenzamos proyectos en Miami" subtitle="Vientos dejan de soplar en contra." />
-                                <div className="relative h-72 rounded-2xl overflow-hidden flex items-center justify-center shadow-xl border border-slate-100">
-                                    <div className="absolute inset-0 bg-cover bg-center opacity-80" style={{ backgroundImage: `url('https://cdn.prod.website-files.com/67808ac2eb0a5516b1754b20/68a34dc9f8f8321773292c23_SD_4.jpg')` }}></div>
+                                <div className="relative h-72 rounded-2xl overflow-hidden flex items-center justify-center shadow-xl border border-slate-100 group">
+                                    <div className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110 opacity-80" style={{ backgroundImage: `url('https://cdn.prod.website-files.com/67808ac2eb0a5516b1754b20/68a34dc9f8f8321773292c23_SD_4.jpg')` }}></div>
                                     <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 to-transparent"></div>
-                                    <div className="relative z-10 text-center p-6"><h3 className="text-2xl font-bold text-white mb-2">The Edge at Sunset</h3><p className="text-xs font-bold bg-white/90 text-slate-900 px-4 py-1.5 rounded-full inline-block uppercase tracking-wider">Inicio de Obra y Cierre ALTA</p></div>
+                                    <div className="relative z-10 text-center p-6">
+                                        <h3 className="text-2xl font-bold text-white mb-2 shadow-sm">The Edge at Sunset</h3>
+                                        <p className="text-xs font-bold bg-white text-slate-900 px-4 py-1.5 rounded-full inline-block uppercase tracking-wider">Inicio de Obra y Cierre ALTA</p>
+                                    </div>
                                 </div>
                             </section>
                             <section id="comercial">
-                                <SectionHeading title="Gestión Comercial" subtitle="Fortalecimos el equipo y esperamos una etapa de consolidación este año." />
-                                <HitoCard title="Nueva Estructura Gerencial" icon="users">Nombramiento de Santiago Prado como Gerente y llegada de nueva subgerencia.</HitoCard>
-                                <HitoCard title="Optimización de Cobros" icon="dollar-sign">Mejora sustancial en cobros de Mutuos y tiempos de escrituración.</HitoCard>
+                                <SectionHeading title="Gestión Comercial" subtitle="Fortalecimiento del equipo y consolidación operacional." />
+                                <div className="space-y-4">
+                                    <HitoCard title="Nueva Estructura Gerencial" icon="users">
+                                        Nombramiento de Santiago Prado como Gerente y llegada de nueva subgerencia enfocada en solidez operacional.
+                                    </HitoCard>
+                                    <HitoCard title="Optimización Operativa" icon="dollar-sign">
+                                        Mejora sustancial en cobros de Mutuos y tiempos de escrituración.
+                                    </HitoCard>
+                                </div>
                             </section>
                         </div>
 
+                        {/* PERSONAS */}
                         <section id="personas" className="py-24 border-t border-slate-200">
-                            <SectionHeading title="Capital Humano y Cultura" subtitle="Crecimiento sostenido basado en el bienestar de nuestro equipo." />
-                            <div className="grid md:grid-cols-3 gap-6">
-                                <div className="p-8 rounded-3xl text-white shadow-lg" style={{ backgroundColor: COLORS.green }}>
+                            <SectionHeading title="Capital Humano y Cultura" subtitle="Bienestar y compromiso de nuestro activo más valioso." />
+                            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                                <div className="p-8 rounded-3xl text-white shadow-lg flex flex-col justify-center items-center text-center transition-transform hover:scale-[1.02]" style={{ backgroundColor: COLORS.green }}>
                                     <Icon name="award" size={40} className="mb-6 opacity-40" />
                                     <h3 className="text-5xl font-black mb-2 italic">79%</h3>
-                                    <p className="font-bold text-lg mb-4">Clima Laboral</p>
+                                    <p className="font-bold text-lg mb-2">Clima Laboral</p>
                                     <p className="text-xs text-green-50">Resultado sobresaliente sobre el mercado Maestra.</p>
                                 </div>
-                                <div className="bg-white p-8 rounded-3xl border border-slate-100 md:col-span-2 shadow-sm">
-                                    <h4 className="font-bold text-xl mb-8 flex items-center gap-3 text-slate-800"><Icon name="users" style={{ color: COLORS.red }} /> Cultura Maestra</h4>
-                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-xs">
+                                <div className="bg-white p-8 rounded-3xl border border-slate-100 lg:col-span-2 shadow-sm">
+                                    <h4 className="font-bold text-xl mb-8 flex items-center gap-3 text-slate-800 uppercase tracking-tighter">
+                                        <Icon name="users" style={{ color: COLORS.red }} /> Cultura Maestra
+                                    </h4>
+                                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 text-[12px]">
                                         <div className="space-y-4">
-                                            <p><span className="font-bold block text-slate-900">Coaching Ejecutivo:</span> Nota 4.32 / 5.0 - Programa completado exitosamente.</p>
-                                            <p><span className="font-bold block text-slate-900">Comunicación Activa:</span> Newsletters, Jornada Comunicacional y Ceremonia Espíritu.</p>
+                                            <p><span className="font-bold block text-slate-900 uppercase">Coaching Ejecutivo:</span> Nota 4.32 / 5.0 - Programa completado exitosamente.</p>
+                                            <p><span className="font-bold block text-slate-900 uppercase">Comunicación:</span> Newsletters video, Jornada Comunicacional y Espíritu Maestra.</p>
                                         </div>
                                         <div className="space-y-4">
-                                            <p><span className="font-bold block text-slate-900">Gestión Proveedores:</span> Líneas de crédito aumentadas en 128% (M$ 5.700).</p>
-                                            <p><span className="font-bold block text-slate-900">Paz Social:</span> Relación sindical positiva y destacado Programa Social en Obras.</p>
+                                            <p><span className="font-bold block text-slate-900 uppercase">Proveedores:</span> Líneas de crédito aumentadas en 128% (M$ 5.700).</p>
+                                            <p><span className="font-bold block text-slate-900 uppercase">Social:</span> Relación sindical positiva y destacado Programa Social en Obras.</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </section>
 
+                        {/* FOOTER */}
                         <footer className="py-24 text-center border-t border-slate-200">
-                            <img src={LOGO_URL} alt="Logo Maestra" className="h-16 mx-auto mb-8" />
-                            <h2 className="text-2xl font-light text-slate-600 italic">"Creamos espacios para que vivas mejor"</h2>
+                            <img src={LOGO_URL} alt="Logo Maestra" className="h-16 mx-auto mb-10 object-contain" />
+                            <h2 className="text-2xl md:text-3xl font-light text-slate-600 italic">"Creamos espacios para que vivas mejor"</h2>
                             <div className="mt-12 text-slate-300 text-[10px] uppercase tracking-[0.4em] font-bold">&copy; 2025 Grupo Maestra</div>
                         </footer>
                     </main>
 
-                    {/* FAB Mobile */}
-                    <button onClick={() => setIsMobileMenuOpen(true)} className="fixed bottom-8 right-8 md:hidden z-[90] text-white p-5 rounded-full shadow-lg" style={{ backgroundColor: COLORS.red }}>
+                    {/* FAB Móvil */}
+                    <button onClick={() => setIsMobileMenuOpen(true)} className="fixed bottom-8 right-8 md:hidden z-[90] text-white p-5 rounded-full shadow-lg flex items-center justify-center active:scale-90 transition-transform" style={{ backgroundColor: COLORS.red }}>
                         <Icon name="menu" size={28} />
                     </button>
                 </div>
